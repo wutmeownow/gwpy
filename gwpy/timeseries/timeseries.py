@@ -2019,6 +2019,28 @@ class TimeSeries(TimeSeriesBase):
         data.__metadata_finalize__(self)
         data._unit = self.unit
         return data
+    
+    ####----------------------------My Code--------------------------####
+    def moving_avg(self, num_points=10):
+        """Run moving average over this 'TimeSeries'.
+        Parameters
+        ----------
+        num_points : `int`
+            averaging bin length in number of points - includes 
+            center point so the bin is actually num_points+1 long
+
+        Returns
+        -------
+        moving_avg : `TimeSeries`
+           a moving average of the input 'TimeSeries'
+
+        See also
+        --------
+        """
+        print(type(self.value))
+        moving_avg = self.value
+        return self.value
+    ####-------------------------------------------------------------####
 
     def notch(self, frequency, type='iir', filtfilt=True, **kwargs):
         """Notch out a frequency in this `TimeSeries`.
