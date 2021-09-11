@@ -21,7 +21,6 @@
 
 import math
 import warnings
-import copy
 
 import numpy
 from numpy import fft as npfft
@@ -2039,9 +2038,7 @@ class TimeSeries(TimeSeriesBase):
         --------
         """
         ma = numpy.convolve(self.value, numpy.ones(num_points)/num_points, mode='valid')
-        ma_ts = copy.deepcopy(self)
-        ma_ts.value = ma
-        return ma_ts
+        return ma
     ####-------------------------------------------------------------####
 
     def notch(self, frequency, type='iir', filtfilt=True, **kwargs):
