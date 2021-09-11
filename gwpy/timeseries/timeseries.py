@@ -2037,7 +2037,7 @@ class TimeSeries(TimeSeriesBase):
         See also
         --------
         """
-        ma = numpy.convolve(self.value, numpyp.ones(num_points)/num_points, mode='valid')
+        ma = numpy.convolve(self.value, numpy.ones(num_points)/num_points, mode='valid')
         return ma
     ####-------------------------------------------------------------####
 
