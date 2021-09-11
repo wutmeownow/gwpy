@@ -2023,11 +2023,11 @@ class TimeSeries(TimeSeriesBase):
     ####----------------------------My Code--------------------------####
     def moving_avg(self, num_points=10):
         """Run moving average over this 'TimeSeries'.
+        Taken from https://stackoverflow.com/questions/13728392/moving-average-or-running-mean
         Parameters
         ----------
         num_points : `int`
-            averaging bin length in number of points - includes 
-            center point so the bin is actually num_points+1 long
+            averaging bin length in number of points
 
         Returns
         -------
@@ -2037,9 +2037,8 @@ class TimeSeries(TimeSeriesBase):
         See also
         --------
         """
-        print(type(self.value))
-        moving_avg = self.value
-        return self.value
+        ma = numpy.convolve(self.value, np.ones(num_points)/num_points, mode='valid')
+        return ma
     ####-------------------------------------------------------------####
 
     def notch(self, frequency, type='iir', filtfilt=True, **kwargs):
