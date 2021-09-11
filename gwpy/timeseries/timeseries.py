@@ -21,6 +21,7 @@
 
 import math
 import warnings
+import copy
 
 import numpy
 from numpy import fft as npfft
@@ -2032,13 +2033,15 @@ class TimeSeries(TimeSeriesBase):
         Returns
         -------
         moving_avg : `TimeSeries`
-           a moving average of the input 'TimeSeries'
+           a moving average 'TimeSeries' of the input 'TimeSeries'
 
         See also
         --------
         """
         ma = numpy.convolve(self.value, numpy.ones(num_points)/num_points, mode='valid')
-        return ma
+        ma_ts = copy.deepcopy(self)
+        ma_ts.value = ma
+        return ma_ts
     ####-------------------------------------------------------------####
 
     def notch(self, frequency, type='iir', filtfilt=True, **kwargs):
